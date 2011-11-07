@@ -12,7 +12,17 @@
       name="plone.app.layoutpage.images"
       directory="images"
       />
+  
+  <browser:page
+      name="view"
+      for=".interfaces.IPage"
+      class=".browser.page.PageView"
+      template="browser/templates/page.pt"
+      permission="zope2.View"
+      />
 
+  <subscriber handler=".browser.page.setDefaultLayoutForNewPage" />
+  
   <gs:registerProfile
       name="default"
       title="Deco Page"
