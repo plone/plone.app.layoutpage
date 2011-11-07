@@ -10,7 +10,9 @@ class PageView(BrowserView):
     
     @property
     def content(self):
-        import pdb; pdb.set_trace( )
+        # make sure tiles will get rendered even without panel merging
+        self.request['plone.app.blocks.merged'] = True
+        
         return ILayoutAware(self.context).content
 
 
