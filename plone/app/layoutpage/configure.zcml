@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:gs="http://namespaces.zope.org/genericsetup"
+    i18n_domain="plone">
+
+  <!-- Include configuration for dependencies listed in setup.py -->
+  <includeDependencies package="." />
+
+  <!-- Register resource directory for images -->
+  <browser:resourceDirectory
+      name="plone.app.layoutpage.images"
+      directory="images"
+      />
+
+  <gs:registerProfile
+      name="default"
+      title="Deco Page"
+      directory="profiles/default"
+      description="(plone.app.layoutpage)"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>
