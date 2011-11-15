@@ -29,6 +29,9 @@ setup(name='plone.app.layoutpage',
           'plone.app.dexterity',
           # -*- Extra requirements: -*-
       ],
+      extras_require={
+        'test': ['plone.app.testing'],
+      },      
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
