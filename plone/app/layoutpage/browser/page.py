@@ -1,9 +1,12 @@
 import os
+from z3c.form import field
 from zope.component import adapter
 from zope.lifecycleevent.interfaces import IObjectCreatedEvent
 from Products.Five import BrowserView
 from plone.app.blocks.layoutbehavior import ILayoutAware
 from plone.app.layoutpage.interfaces import IPage
+from plone.dexterity.browser import add
+from plone.app.dexterity.behaviors.metadata import IBasic
 
 
 class PageView(BrowserView):
@@ -16,9 +19,23 @@ class PageView(BrowserView):
         return ILayoutAware(self.context).content
 
 
-page_layout_file = os.path.join(os.path.dirname(__file__), 'templates', 'page.html')
-default_page_layout = open(page_layout_file).read()
+class PageAddForm(add.DefaultAddForm):
+    additionalSchemata = ()
+    
+    fields = field.Fields(IBasic['title'])
+
+
+class PageAddView(add.DefaultAddView):
+    form = PageAddForm
+
+
+pageLayoutFile = os.path.join(os.path.dirname(__file__), 'templates', 'page.html')
+defaultPageLayout = open(pageLayoutFile).read()
+
 
 @adapter(IPage, IObjectCreatedEvent)
 def setDefaultLayoutForNewPage(obj, event):
-    ILayoutAware(obj).content = default_page_layout
+    layoutAware = ILayoutAware(obj)
+    layout = getattr(layoutAware, 'content', None)
+    if layout is None:
+        ILayoutAware(obj).content = defaultPageLayout

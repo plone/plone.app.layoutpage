@@ -21,6 +21,23 @@
       permission="zope2.View"
       />
 
+   <!-- add form -->
+   <adapter
+       for="Products.CMFCore.interfaces.IFolderish
+            Products.CMFDefault.interfaces.ICMFDefaultSkin
+            plone.dexterity.interfaces.IDexterityFTI"
+       provides="zope.publisher.interfaces.browser.IBrowserPage"
+       factory=".browser.page.PageAddView"
+       name="page"
+       />
+   <class class=".browser.page.PageAddView">
+       <require
+           permission="cmf.AddPortalContent"
+           interface="zope.publisher.interfaces.browser.IBrowserPage"
+           />
+   </class>
+
+  <!-- make sure new pages get a default page layout -->
   <subscriber handler=".browser.page.setDefaultLayoutForNewPage" />
   
   <gs:registerProfile
@@ -30,7 +47,5 @@
       description="(plone.app.layoutpage)"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-
-  <!-- -*- extra stuff goes here -*- -->
-
+  
 </configure>
