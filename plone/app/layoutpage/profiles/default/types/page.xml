@@ -29,6 +29,7 @@
   <!-- View information -->
   <property name="default_view">view</property>
   <property name="default_view_fallback">True</property>
+  <property name="immediate_view">edit</property>
   <property name="view_methods">
     <element value="view"/>
   </property>
