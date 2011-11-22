@@ -16,7 +16,7 @@
 
   <property name="add_permission">cmf.AddPortalContent</property>
 
-  <property name="klass">plone.dexterity.content.Item</property>
+  <property name="klass">plone.dexterity.content.Container</property>
   <property name="schema">plone.app.layoutpage.interfaces.IPage</property>
 
   <!-- List of enabled behaviors -->
