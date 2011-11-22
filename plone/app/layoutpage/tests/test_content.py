@@ -74,7 +74,23 @@ class IntegrationTests(unittest.TestCase):
     def test_page_schema(self):
         page = self.layer['portal'].portal_types.page
         self.assertEqual(page.schema, 'plone.app.layoutpage.interfaces.IPage')
+    
+    def test_is_folderish(self):
+        ti = self.layer['portal'].portal_types.page
+        self.assertEqual(ti.klass, 'plone.dexterity.content.Container')
 
+        self.layer['folder'].invokeFactory('page', 'dp')
+        page = self.layer['folder']['dp']
+        
+        # check we are allowed to create content inside the page - page itself at least
+        from zope.component import getMultiAdapter
+        addable = getMultiAdapter((page, page.REQUEST), name='folder_factories').addable_types()
+        self.assertTrue(len(addable) > 0)
+
+        # check that invokeFactory works inside the page
+        page.invokeFactory('page', 'subdp')
+        subpage = self.layer['folder']['dp']['subdp']
+        self.assertEqual('/'.join(subpage.getPhysicalPath()), '/plone/foo-folder/dp/subdp')
 
 class FunctionalTests(unittest.TestCase):
 
