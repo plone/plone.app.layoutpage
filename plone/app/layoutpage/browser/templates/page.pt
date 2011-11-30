@@ -8,7 +8,7 @@
 <body>
 
 <metal:content fill-slot="content">
-    <tal:block tal:replace="structure view/content" />
+    <div id="content" tal:content="structure view/content" />
 </metal:content>
 
 </body>
