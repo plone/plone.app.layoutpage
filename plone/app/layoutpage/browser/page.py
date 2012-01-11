@@ -32,12 +32,22 @@ class PageView(BrowserView):
         tiles = {}
         baseURL = self.request.getURL()
         tree = lxml.html.fromstring(self.content)
-        for tileNode in utils.bodyTileXPath(tree):
-            tileName = tileNode.attrib['data-tile']
-            tileTree = utils.resolve(urljoin(baseURL, tileName))
-            tile = tileTree.find('body')
-            tiles[tileName] = (tile.text or '') + \
-                ''.join([lxml.html.tostring(child) for child in tile])
+
+        for panelNode in utils.panelXPath(tree):
+            panelName = panelNode.attrib['data-panel']
+
+            for tileNode in utils.bodyTileXPath(panelNode):
+                tileName = tileNode.attrib['data-tile']
+
+                tileTree = utils.resolve(urljoin(baseURL, tileName))
+                tile = tileTree.find('body')
+
+                if panelName not in tiles.keys():
+                    tiles[panelName] = {}
+
+                tiles[panelName][tileName] = (tile.text or '') + \
+                    ''.join([lxml.html.tostring(child) for child in tile])
+
         return json.dumps(tiles)
 
 
