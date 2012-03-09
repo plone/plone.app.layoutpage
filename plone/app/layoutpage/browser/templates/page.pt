@@ -7,11 +7,9 @@
       i18n:domain="plone">
 <body>
 
-<metal:content fill-slot="content">
-    <div id="content" tal:content="structure view/content" />
-    <input type="hidden" id="deco-tiles-instances" 
-        tal:attributes="value view/tiles_instances" />
-</metal:content>
+<div metal:fill-slot="content">
+    <div id="content" tal:content="structure view/content"></div>
+</div>
 
 </body>
 </html>
