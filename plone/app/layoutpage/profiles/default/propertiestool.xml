@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <object name="portal_properties" meta_type="Plone Properties Tool">
  <object name="site_properties" meta_type="Plone Property Sheet">
-  <property name="typesLinkToFolderContentsInFC" type="lines">
-   <element value="Folder"/>
+  <property name="typesLinkToFolderContentsInFC" purge="False">
    <element value="page"/>
   </property>
-  <property name="default_page_types" type="lines">
-   <element value="Topic"/>
+  <property name="default_page_types" purge="False">
    <element value="page"/>
   </property>
  </object>
