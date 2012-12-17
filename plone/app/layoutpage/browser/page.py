@@ -13,6 +13,7 @@ from plone.app.blocks import utils
 
 try:
     import json
+    assert json
 except:
     import simplejson as json
 
@@ -62,7 +63,7 @@ class PageAddView(add.DefaultAddView):
 
 
 pageLayoutFile = os.path.join(
-        os.path.dirname(__file__), 'templates', 'page.html')
+    os.path.dirname(__file__), 'templates', 'page.html')
 defaultPageLayout = open(pageLayoutFile).read()
 
 

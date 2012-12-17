@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-version = '1.0'
+version = '1.1'
 tests_require = [
     'plone.testing',
     'plone.app.testing',
     'plone.behavior',
-    ]
+]
 
 setup(
     name='plone.app.layoutpage',
@@ -16,7 +16,7 @@ setup(
         "Framework :: Plone",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
-        ],
+    ],
     keywords='',
     author='David Glick',
     author_email='dglick@gmail.com',
@@ -40,7 +40,7 @@ setup(
     tests_require=tests_require,
     extras_require={'test': tests_require},
     entry_points="""
-        [z3c.autoinclude.plugin]
-        target = plone
-        """,
-    )
+    [z3c.autoinclude.plugin]
+    target = plone
+    """,
+)

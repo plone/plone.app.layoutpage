@@ -1,4 +1,3 @@
-from plone.testing import z2
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
@@ -13,8 +12,6 @@ class LayoutPageLayer(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         import plone.app.layoutpage
-        #import plone.app.toolbar
-        #self.loadZCML(package=plone.app.toolbar) # FIXME: this should be fixed in deco?
         self.loadZCML(package=plone.app.layoutpage)
 
     def setUpPloneSite(self, portal):
@@ -26,7 +23,9 @@ class LayoutPageLayer(PloneSandboxLayer):
         setRoles(portal, TEST_USER_ID, ['Member'])
 
 LAYOUT_PAGE_FIXTURE = LayoutPageLayer()
-LAYOUT_PAGE_INTEGRATION_TESTING = IntegrationTesting(bases=(LAYOUT_PAGE_FIXTURE, ),
-        name='LayoutPage:Integration')
-LAYOUT_PAGE_FUNCTIONAL_TESTING = FunctionalTesting(bases=(LAYOUT_PAGE_FIXTURE, ),
-                                       name='LayoutPage:Functional')
+LAYOUT_PAGE_INTEGRATION_TESTING = IntegrationTesting(
+    bases=(LAYOUT_PAGE_FIXTURE, ),
+    name='LayoutPage:Integration')
+LAYOUT_PAGE_FUNCTIONAL_TESTING = FunctionalTesting(
+    bases=(LAYOUT_PAGE_FIXTURE, ),
+    name='LayoutPage:Functional')
