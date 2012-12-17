@@ -6,6 +6,9 @@ that is editable via Deco.
 Changelog
 =========
 
+1.2 (unreleased)
+----------------
+
 1.1 (2012-12-17)
 ----------------
 
